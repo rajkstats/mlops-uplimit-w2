@@ -16,26 +16,31 @@ All checks passed!
 
 **Monitoring & Observability using Grafana & Prometheus**
 
-Graffana
-![alt text](image-6.png)
+**Graffana**
 
+![alt text](image-6.png)
 
 **Load Test**
 ![alt text](image-7.png)
+
 
 **Optional Tasks**
 
 **Task 1: Improve Logging in the Application**
 
-Response Headers (X-Request-ID,X-Timestamp,X-Latency-ms)
+Custom Middleware in FastAPI
+
+**Response Headers (X-Request-ID,X-Timestamp,X-Latency-ms)**
+
 ![alt text](https://i.imgur.com/vXFq9SS.png)
 
-Sample log
+**Sample log**
 
 ```
 INFO     | src.server:log_and_inject_metadata:42 - Request ID: 0ffe55c0-aec4-4715-8ea9-763d3e14324d, Timestamp: 2024-10-16 21:48:34, Latency: 48.60ms, Input: {"review": "Hello world this is the best product ever!"}
 ```
 **Task 2: Experiment with Load Tests**
+
 We start with 10 users and gradually ramp up to 1000 over a few minutes.
 
 **Gradual Ramp-Up** - Simulate a gradual increase in users to see how your API handles growing load
@@ -65,7 +70,9 @@ locust -f load_test/average_test.py --host=http://localhost:8000 --users 1000 --
 ```
 - Number of replicas: 3
 - Number of CPUs/Memory: Each replica is allocated 0.2 CPUs
+  
 ![alt text](image-4.png)
 
 **Task 3: Integrate Behavioral Test into Automated Test Setup**
+
 Tested successfully (project/tests/test_behavioral.py)
