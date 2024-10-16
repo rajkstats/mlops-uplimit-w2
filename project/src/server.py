@@ -31,7 +31,7 @@ async def log_and_inject_metadata(request: Request, call_next):
 
     start_time = time.time()  # Track request start time for latency calculation
     request_id = str(uuid.uuid4())  # Generate a unique request ID
-    timestamp = datetime.strftime("%Y-%m-%d %H:%M:%S")  # Current timestamp
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")  # Current timestamp
 
     request_body = await request.body()  # Read request body to log input
 
