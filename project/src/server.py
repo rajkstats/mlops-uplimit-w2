@@ -29,14 +29,22 @@ async def log_and_inject_metadata(request: Request, call_next):
     # Dynamically configure a logger for the request cycle
     request_logger = configure_logger("api.log")
 
-    start_time = time.time()  # Track request start time for latency calculation
-    request_id = str(uuid.uuid4())  # Generate a unique request ID
-    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")  # Current timestamp
+    # Track request start time for latency calculation
+    start_time = time.time()
 
-    request_body = await request.body()  # Read request body to log input
+    # Generate a unique request ID
+    request_id = str(uuid.uuid4())
 
-    # Calculate latency and log enriched data
+    # Current timestamp
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+    # Read request body to log input
+    request_body = await request.body()
+
+    # Process Request
     response = await call_next(request)
+
+    # Calculate latency
     latency = time.time() - start_time
 
     request_logger.info(f"Request ID: {request_id}, Timestamp: {timestamp}, Latency: {latency * 1000:.2f}ms, Input: {request_body.decode('utf-8')}")
@@ -47,7 +55,6 @@ async def log_and_inject_metadata(request: Request, call_next):
     response.headers["X-Latency-ms"] = f"{latency * 1000:.2f}"
 
     return response
-
 
 
 @serve.deployment(
