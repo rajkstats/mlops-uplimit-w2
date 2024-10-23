@@ -69,3 +69,10 @@ locust -f load_test/average_test.py --host=http://localhost:8000 --users 1000 --
 
 **Task 3: Integrate Behavioral Test into Automated Test Setup**
 Tested successfully (project/tests/test_behavioral.py)
+
+
+#### WK3 Canary Test
+
+Ran Successfully !!
+
+![alt text](image-8.png)
